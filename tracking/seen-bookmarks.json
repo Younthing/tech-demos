@@ -1,5 +1,19 @@
 {
-  "proposed": [],
-  "approved": [],
+  "proposed": [
+    {
+      "id": "2113028052032573774",
+      "title": "OpenDataLoader PDF (CPU-only PDF to Markdown/JSON, ~100 pages/s)",
+      "url": "https://x.com/bkdgiffug/status/2113028052032573774",
+      "date": "2026-10-23"
+    }
+  ],
+  "approved": [
+    {
+      "id": "2108948624004526516",
+      "title": "Anatomy (interactive isometric machine wireframes)",
+      "url": "https://x.com/wheresryan22/status/2108948624004526516",
+      "date": "2026-10-22"
+    }
+  ],
   "skipped": []
 }
