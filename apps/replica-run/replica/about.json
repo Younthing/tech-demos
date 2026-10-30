@@ -1,0 +1,81 @@
+{
+  "subject": "Pomofocus",
+  "subjectUrl": "https://pomofocus.io/",
+  "upstream": "77c9436fb3d18c3d58169efb8caf4fe906b0dc51",
+  "pipeline": [
+    {
+      "id": "recon",
+      "ran": true,
+      "title": "Recon",
+      "note": "Public pages and screenshots only. No bundles, no private APIs.",
+      "artifact": "replica/recon.md"
+    },
+    {
+      "id": "architect",
+      "ran": true,
+      "title": "Architect",
+      "note": "Client-only. The data lives in localStorage. No database, because the backend step is skipped.",
+      "artifact": "replica/architecture.md"
+    },
+    {
+      "id": "design",
+      "ran": true,
+      "title": "Design",
+      "note": "Own tokens and an open font. Contrast checked with the vendored tool.",
+      "artifact": "replica/design/tokens.json"
+    },
+    {
+      "id": "build",
+      "ran": true,
+      "title": "Build",
+      "note": "The timer, queue, settings, and report were written for this demo.",
+      "artifact": "replica/build-log.md"
+    },
+    {
+      "id": "test",
+      "ran": true,
+      "title": "Test",
+      "note": "Reducer tests plus one browser pass of the core flow.",
+      "artifact": "replica/test-plan.md"
+    },
+    {
+      "id": "diff",
+      "ran": true,
+      "title": "Diff",
+      "note": "Feature score and layout score from the vendored tools.",
+      "artifact": "replica/parity.md"
+    },
+    {
+      "id": "entrepreneur",
+      "ran": true,
+      "title": "Entrepreneur",
+      "note": "Public comments only, each with a URL. The sample is small.",
+      "artifact": "replica/fixes.md"
+    },
+    {
+      "id": "brand",
+      "ran": true,
+      "title": "Brand",
+      "note": "The name was fixed by the brief. The sweep covers the product source.",
+      "artifact": "replica/brand.md"
+    },
+    {
+      "id": "backend",
+      "ran": false,
+      "title": "Backend",
+      "note": "Skipped. This demo has no accounts, database, payments, or server."
+    },
+    {
+      "id": "launch",
+      "ran": false,
+      "title": "Launch",
+      "note": "Skipped. No store listing, pricing page, or launch campaign."
+    },
+    {
+      "id": "deploy",
+      "ran": false,
+      "title": "Deploy",
+      "note": "Skipped. The app runs locally and is not deployed."
+    }
+  ]
+}

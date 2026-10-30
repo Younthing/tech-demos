@@ -1,0 +1,34 @@
+{
+  "rows": [
+    {
+      "flow": "F01 Start a focus block",
+      "original": "The public timer shows the digits and one wide control under them. The idle tab title already includes the clock.",
+      "clone": "Begin starts a clock stored as an end timestamp. The tab title includes the clock at rest and while running. Space starts and pauses when focus is not in a field. That key was not confirmed on the original: the check hung the debugger, so it is unobserved.",
+      "decision": "keep"
+    },
+    {
+      "flow": "F02 Add a task",
+      "original": "Add opens a composer with a title, an estimate stepper, a note, and a locked project control, then Save. The active title replaces the line under the digits. A fraction and a finish time appear under the list.",
+      "clone": "New task asks for a title and a number of blocks. The active title and a blocks/finish line show after save. No note field and no project control.",
+      "decision": "keep"
+    },
+    {
+      "flow": "F03 Settings",
+      "original": "Durations default to 25, 5 and 15. Auto-start for rests and for focus are off. Long-rest interval is 4. Also: auto-check, move finished tasks down, an alarm list with repeat, a focus sound, colour themes, hour format, dark mode while running, a reminder near the end, week start, and integrations.",
+      "clone": "The same defaults for durations, auto-start, the long-rest interval, auto-check, and moving finished tasks. One synthesised chime, optional noise, a desktop notice, and volume. No alarm list, no reminder-before-end, no theme picker, no hour-format switch, no integrations.",
+      "decision": "keep the gap"
+    },
+    {
+      "flow": "F04 Change a running block",
+      "original": "No add-or-drop-a-minute control was visible on the timer or in the settings text that was read.",
+      "clone": "More menu: Add a minute and Drop a minute. The end timestamp moves with them.",
+      "decision": "keep"
+    },
+    {
+      "flow": "F05 Sign in",
+      "original": "A sign-in control is on the timer. A public comment says the report asked for login and the tasks were then gone.",
+      "clone": "No account. The queue, settings, and log stay in this browser.",
+      "decision": "keep"
+    }
+  ]
+}

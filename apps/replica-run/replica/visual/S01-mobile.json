@@ -1,0 +1,73 @@
+{
+  "mode": "layout",
+  "original": {
+    "width": 390,
+    "height": 844
+  },
+  "clone": {
+    "width": 390,
+    "height": 844
+  },
+  "compared_at": {
+    "width": 390,
+    "height": 844
+  },
+  "height_delta_pct": 0.0,
+  "score": 13.0,
+  "verdict": "different",
+  "regions": [
+    {
+      "x": 0,
+      "y": 224,
+      "w": 384,
+      "h": 608,
+      "cells": 150,
+      "where": "middle centre"
+    },
+    {
+      "x": 32,
+      "y": 96,
+      "w": 352,
+      "h": 256,
+      "cells": 40,
+      "where": "top centre"
+    },
+    {
+      "x": 192,
+      "y": 0,
+      "w": 192,
+      "h": 64,
+      "cells": 11,
+      "where": "top right"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 160,
+      "h": 64,
+      "cells": 10,
+      "where": "top left"
+    },
+    {
+      "x": 0,
+      "y": 256,
+      "w": 64,
+      "h": 96,
+      "cells": 5,
+      "where": "middle left"
+    },
+    {
+      "x": 352,
+      "y": 448,
+      "w": 32,
+      "h": 32,
+      "cells": 1,
+      "where": "middle right"
+    }
+  ],
+  "files": {
+    "original": "replica/screens/S01-mobile.png",
+    "clone": "replica/clone-screens/S01-mobile.png"
+  },
+  "diff_image": "replica/diffs/S01-mobile.png"
+}

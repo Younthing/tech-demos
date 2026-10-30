@@ -1,0 +1,6 @@
+{
+  "name": "Ripen",
+  "avoid": ["Pomofocus"],
+  "domains": ["pomofocus.io"],
+  "colors": ["#ba4949", "#38858a", "#397097", "#af4949"]
+}

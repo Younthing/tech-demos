@@ -1,0 +1,192 @@
+{
+  "feature_score": 87.5,
+  "counted": 33,
+  "must_have_done": 10,
+  "must_have_total": 10,
+  "by_area": [
+    {
+      "area": "settings",
+      "score": 59.1,
+      "features": 13
+    },
+    {
+      "area": "timer",
+      "score": 100.0,
+      "features": 7
+    },
+    {
+      "area": "tasks",
+      "score": 100.0,
+      "features": 11
+    },
+    {
+      "area": "report",
+      "score": 100.0,
+      "features": 1
+    },
+    {
+      "area": "storage",
+      "score": 100.0,
+      "features": 1
+    }
+  ],
+  "missing": [
+    {
+      "feature": "Pick from several alarm sounds and a repeat count",
+      "area": "settings",
+      "priority": "should",
+      "clone": "no",
+      "notes": "Ripen has one synthesised chime"
+    },
+    {
+      "feature": "Warn a few minutes before a block ends",
+      "area": "settings",
+      "priority": "should",
+      "clone": "no",
+      "notes": "The original can remind near the end"
+    },
+    {
+      "feature": "Play a background sound during focus",
+      "area": "settings",
+      "priority": "should",
+      "clone": "partial",
+      "notes": "One synthesised noise, not a library of scenes"
+    },
+    {
+      "feature": "Choose a 24-hour clock",
+      "area": "settings",
+      "priority": "could",
+      "clone": "no",
+      "notes": "Finish times use the browser locale"
+    },
+    {
+      "feature": "Choose a colour theme",
+      "area": "settings",
+      "priority": "could",
+      "clone": "no",
+      "notes": "Modes have fixed colours"
+    },
+    {
+      "feature": "Open a small always-on-top window",
+      "area": "settings",
+      "priority": "could",
+      "clone": "no",
+      "notes": "Not in this page"
+    },
+    {
+      "feature": "Put the session in a separate dark theme",
+      "area": "settings",
+      "priority": "could",
+      "clone": "no",
+      "notes": "Each mode already uses its own dark field"
+    }
+  ],
+  "skipped": [
+    {
+      "feature": "Installable desktop builds",
+      "area": "distribution",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "Their installers are outside this local web demo"
+    },
+    {
+      "feature": "Account and sync across devices",
+      "area": "account",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "No server in this demo"
+    },
+    {
+      "feature": "Projects with separate totals",
+      "area": "premium",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "Paid tier on the original"
+    },
+    {
+      "feature": "Yearly report",
+      "area": "premium",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "Paid tier on the original"
+    },
+    {
+      "feature": "CSV export of history as a paid feature",
+      "area": "premium",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "Paid tier on the original; a local export is tracked separately"
+    },
+    {
+      "feature": "Unlimited templates",
+      "area": "premium",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "Paid tier on the original"
+    },
+    {
+      "feature": "Import tasks from a third-party app",
+      "area": "integrations",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "Requires their partner connection"
+    },
+    {
+      "feature": "Outbound webhooks",
+      "area": "integrations",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "Paid integration"
+    },
+    {
+      "feature": "Remove ads by paying",
+      "area": "premium",
+      "priority": "could",
+      "clone": "skip",
+      "notes": "Paid tier; this demo records the ad-free session separately"
+    }
+  ],
+  "extras": [
+    {
+      "feature": "Add or subtract a minute on the live clock",
+      "area": "timer",
+      "priority": "could",
+      "clone": "yes",
+      "notes": "Not part of the original clock"
+    },
+    {
+      "feature": "Download the session log from this browser",
+      "area": "report",
+      "priority": "could",
+      "clone": "yes",
+      "notes": "A local file, no account"
+    },
+    {
+      "feature": "Keep one browser store, with no second account to diverge from",
+      "area": "storage",
+      "priority": "could",
+      "clone": "yes",
+      "notes": "A public comment described tasks disappearing after sign-in"
+    }
+  ],
+  "problems": [],
+  "visual": [
+    {
+      "file": "replica/clone-screens/S01-desktop.png",
+      "score": 45.2,
+      "mode": "layout"
+    },
+    {
+      "file": "replica/clone-screens/S01-mobile.png",
+      "score": 13.0,
+      "mode": "layout"
+    },
+    {
+      "file": "replica/clone-screens/S04-desktop.png",
+      "score": 20.5,
+      "mode": "layout"
+    }
+  ],
+  "layout_score": 26.2,
+  "overall": 75.2
+}

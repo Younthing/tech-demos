@@ -1,0 +1,26 @@
+:root {
+  --color-bg: #f7f4ec;
+  --color-surface: #efeae0;
+  --color-border: #d9d3c4;
+  --color-border-input: #6e6756;
+  --color-text: #1c1a16;
+  --color-text-muted: #5c564a;
+  --color-accent: #31402b;
+  --color-on-accent: #f7f4ec;
+  --color-danger: #8a3d32;
+  --color-success: #2c6b45;
+  --color-focus-bg: #31402b;
+  --color-focus-card: #3d4f36;
+  --color-focus-ink: #f7f4ec;
+  --color-short-bg: #5c471f;
+  --color-short-card: #6d5528;
+  --color-short-ink: #fbf6ea;
+  --color-long-bg: #332b4e;
+  --color-long-card: #403664;
+  --color-long-ink: #f3f0fb;
+  --font-sans: "Geist Variable", Inter, system-ui, sans-serif;
+  --radius-md: 10px;
+  --space-2: 8px;
+  --space-4: 16px;
+  --space-6: 24px;
+}

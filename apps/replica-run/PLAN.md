@@ -88,6 +88,14 @@ apps/replica-run/
 - More review sources (App Store/Play have no listing for this web app) — the sample size is reported as is.
 - Re-evaluate after the first slice (timer + diff page) runs.
 
+## Deviations from the first draft of this plan
+
+- Design tokens live at `replica/design/tokens.json` (plus `tokens.css` and `components.md`) because that is the path the design skill and `contrast.py` use. There is no second copy at `replica/tokens.json`.
+- Adapted review themes are `replica/themes.json`. The vendored `themes.json` stays the upstream file.
+- No `schema.sql`. The architect skill's SQL step does not apply: the backend step is skipped and the store is `localStorage`, described in `architecture.md`.
+- No `/design` route. The brief fixes the routes at `/`, `/diff`, `/fixes`, and `/about`. Primitives are the shadcn components used on those pages.
+- The name Ripen was fixed by the brief. `brand.md` still lists the trademark checks as not run.
+
 ## Credit
 
 Pipeline and tools: replica-skill by Jake Schincariol, MIT. Subject of the case study: Pomofocus (pomofocus.io); Ripen is an independent clean-room rebuild, not affiliated.
