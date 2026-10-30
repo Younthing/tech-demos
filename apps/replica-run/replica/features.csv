@@ -1,0 +1,46 @@
+feature,area,priority,original,clone,notes
+Run a focus countdown,timer,must,yes,yes,Default length 25 minutes
+Run a short rest countdown,timer,must,yes,yes,Default length 5 minutes
+Run a long rest countdown,timer,must,yes,yes,Default length 15 minutes
+Start and pause the clock,timer,must,yes,yes,Space does the same while not typing
+Switch the active interval from the timer,timer,must,yes,yes,Switching drops the current interval without crediting it
+Add a task,tasks,must,yes,yes,
+Estimate how many focus blocks a task needs,tasks,must,yes,yes,
+Choose which task the clock applies to,tasks,must,yes,yes,
+Mark a task finished,tasks,must,yes,yes,
+Show finished blocks against the estimate,tasks,must,yes,yes,A focus block is counted when it runs out
+Skip to the next interval,timer,should,yes,yes,Skip does not credit a focus block
+Change the three durations,settings,should,yes,yes,1 to 180 minutes
+Start the next rest automatically,settings,should,yes,yes,
+Start the next focus automatically,settings,should,yes,yes,
+Take a long rest every N focus blocks,settings,should,yes,yes,Default 4
+Estimate when the open tasks finish,tasks,should,yes,yes,Includes the rests between focus blocks
+Play a sound when an interval ends,settings,should,yes,yes,A chime synthesised in the browser
+Show a browser notice when an interval ends,settings,should,yes,yes,Permission is requested from settings
+"Report focus minutes for today, the week, and the month",report,should,yes,yes,Totals plus a seven-day bar
+"Keep tasks, settings, and history in the browser",storage,should,yes,yes,localStorage only
+Edit or delete a task,tasks,should,yes,yes,
+Clear finished tasks,tasks,should,yes,yes,
+Show the countdown in the tab title,timer,should,yes,yes,
+Save up to three task templates,tasks,should,yes,yes,Cap matches the free tier described on the public page
+Play a background sound during focus,settings,should,yes,partial,"One synthesised noise, not a library of scenes"
+Put the session in a separate dark theme,settings,could,yes,no,Each mode already uses its own dark field
+Installable desktop builds,distribution,could,yes,skip,Their installers are outside this local web demo
+Account and sync across devices,account,could,yes,skip,No server in this demo
+Projects with separate totals,premium,could,yes,skip,Paid tier on the original
+Yearly report,premium,could,yes,skip,Paid tier on the original
+CSV export of history as a paid feature,premium,could,yes,skip,Paid tier on the original; a local export is tracked separately
+Unlimited templates,premium,could,yes,skip,Paid tier on the original
+Import tasks from a third-party app,integrations,could,yes,skip,Requires their partner connection
+Outbound webhooks,integrations,could,yes,skip,Paid integration
+Remove ads by paying,premium,could,yes,skip,Paid tier; this demo records the ad-free session separately
+Add or subtract a minute on the live clock,timer,could,no,yes,Not part of the original clock
+Download the session log from this browser,report,could,no,yes,"A local file, no account"
+Mark a task finished when its estimate is met,tasks,should,yes,yes,Off unless turned on
+Move finished tasks below open ones,tasks,should,yes,yes,On by default
+Warn a few minutes before a block ends,settings,should,yes,no,The original can remind near the end
+Pick from several alarm sounds and a repeat count,settings,should,yes,no,Ripen has one synthesised chime
+Choose a colour theme,settings,could,yes,no,Modes have fixed colours
+Choose a 24-hour clock,settings,could,yes,no,Finish times use the browser locale
+Open a small always-on-top window,settings,could,yes,no,Not in this page
+"Keep one browser store, with no second account to diverge from",storage,could,no,yes,A public comment described tasks disappearing after sign-in

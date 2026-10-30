@@ -1,0 +1,331 @@
+{
+  "reviews": 18,
+  "sources": [
+    "hacker-news",
+    "product-hunt"
+  ],
+  "rated": 0,
+  "themes": [
+    {
+      "id": "extension",
+      "label": "Browser extension or always-visible timer",
+      "kind": "request",
+      "score": 1.5,
+      "count": 3,
+      "share_pct": 16.7,
+      "avg_rating": null,
+      "sources": [
+        "product-hunt"
+      ],
+      "thin": true,
+      "quotes": [
+        {
+          "quote": "Is there a plan to release it as a browser extension?",
+          "url": "https://www.producthunt.com/products/pomofocus",
+          "source": "product-hunt",
+          "rating": null
+        },
+        {
+          "quote": "You should consider making this into a Chrome/Firefox plugin.",
+          "url": "https://www.producthunt.com/products/pomofocus",
+          "source": "product-hunt",
+          "rating": null
+        },
+        {
+          "quote": "@uzu_yuya You did a really cool job, Primarily I've been looking for a good (UX/UI) extension for Chrome, however, once I've found It, I think even better, cause I can easily pin this tab",
+          "url": "https://www.producthunt.com/products/pomofocus",
+          "source": "product-hunt",
+          "rating": null
+        }
+      ]
+    },
+    {
+      "id": "autostart",
+      "label": "How the next interval starts",
+      "kind": "request",
+      "score": 0.6,
+      "count": 2,
+      "share_pct": 11.1,
+      "avg_rating": null,
+      "sources": [
+        "hacker-news"
+      ],
+      "thin": true,
+      "quotes": [
+        {
+          "quote": "Plus, I prefer starting the focused work with a deliberate action (click).",
+          "url": "https://news.ycombinator.com/item?id=34479634",
+          "source": "hacker-news",
+          "rating": null
+        },
+        {
+          "quote": "I spent an inordinate amount of time researching pomodoro timers once, as I was looking for one that automatically starts breaks, but waits for a click to start the next pomodoro.",
+          "url": "https://news.ycombinator.com/item?id=24977005",
+          "source": "hacker-news",
+          "rating": null
+        }
+      ]
+    },
+    {
+      "id": "sounds",
+      "label": "Alarm and background sound",
+      "kind": "complaint",
+      "score": 0.6,
+      "count": 2,
+      "share_pct": 11.1,
+      "avg_rating": null,
+      "sources": [
+        "hacker-news",
+        "product-hunt"
+      ],
+      "thin": true,
+      "quotes": [
+        {
+          "quote": "So the chime could be easily missed.",
+          "url": "https://www.producthunt.com/products/pomofocus",
+          "source": "product-hunt",
+          "rating": null
+        },
+        {
+          "quote": "https://pomofocus.io/app is similar (but with satisfying sounds!)",
+          "url": "https://news.ycombinator.com/item?id=35475061",
+          "source": "hacker-news",
+          "rating": null
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "label": "Privacy and permissions",
+      "kind": "complaint",
+      "score": 0.6,
+      "count": 1,
+      "share_pct": 5.6,
+      "avg_rating": null,
+      "sources": [
+        "product-hunt"
+      ],
+      "thin": true,
+      "quotes": [
+        {
+          "quote": "I especially appreciate how you have built specific tasks and projects into the app for tracking and reporting.",
+          "url": "https://www.producthunt.com/products/pomofocus",
+          "source": "product-hunt",
+          "rating": null
+        }
+      ]
+    },
+    {
+      "id": "account",
+      "label": "Login and account problems",
+      "kind": "complaint",
+      "score": 0.3,
+      "count": 1,
+      "share_pct": 5.6,
+      "avg_rating": null,
+      "sources": [
+        "product-hunt"
+      ],
+      "thin": true,
+      "quotes": [
+        {
+          "quote": "It said to login to see reports.",
+          "url": "https://www.producthunt.com/products/pomofocus",
+          "source": "product-hunt",
+          "rating": null
+        }
+      ]
+    },
+    {
+      "id": "billing",
+      "label": "Billing, cancelling and refunds",
+      "kind": "complaint",
+      "score": 0.3,
+      "count": 1,
+      "share_pct": 5.6,
+      "avg_rating": null,
+      "sources": [
+        "hacker-news"
+      ],
+      "thin": true,
+      "quotes": [
+        {
+          "quote": "...r subtract time; that you can't export the times as a PDF or CSV to send to clients if you're freelancing and billing by the hour; that you can't organize tasks in a calendar-like format, et cetera....",
+          "url": "https://news.ycombinator.com/item?id=34482019",
+          "source": "hacker-news",
+          "rating": null
+        }
+      ]
+    },
+    {
+      "id": "customisation",
+      "label": "Customisation and control",
+      "kind": "request",
+      "score": 0.3,
+      "count": 1,
+      "share_pct": 5.6,
+      "avg_rating": null,
+      "sources": [
+        "hacker-news"
+      ],
+      "thin": true,
+      "quotes": [
+        {
+          "quote": "Great that this is possible here (settings)!",
+          "url": "https://news.ycombinator.com/item?id=34479634",
+          "source": "hacker-news",
+          "rating": null
+        }
+      ]
+    },
+    {
+      "id": "integrations",
+      "label": "Integrations, import and export",
+      "kind": "request",
+      "score": 0.3,
+      "count": 1,
+      "share_pct": 5.6,
+      "avg_rating": null,
+      "sources": [
+        "hacker-news"
+      ],
+      "thin": true,
+      "quotes": [
+        {
+          "quote": "...h as that the work and break times are rigid between tasks and you can't add or subtract time; that you can't export the times as a PDF or CSV to send to clients if you're freelancing and billing by the hour; that you ca...",
+          "url": "https://news.ycombinator.com/item?id=34482019",
+          "source": "hacker-news",
+          "rating": null
+        }
+      ]
+    },
+    {
+      "id": "notifications",
+      "label": "Notifications and spam",
+      "kind": "complaint",
+      "score": 0.3,
+      "count": 1,
+      "share_pct": 5.6,
+      "avg_rating": null,
+      "sources": [
+        "product-hunt"
+      ],
+      "thin": true,
+      "quotes": [
+        {
+          "quote": "To have it display a web notification when the timer hits 0.",
+          "url": "https://www.producthunt.com/products/pomofocus",
+          "source": "product-hunt",
+          "rating": null
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "label": "Slow, laggy, heavy",
+      "kind": "complaint",
+      "score": 0.3,
+      "count": 1,
+      "share_pct": 5.6,
+      "avg_rating": null,
+      "sources": [
+        "hacker-news"
+      ],
+      "thin": true,
+      "quotes": [
+        {
+          "quote": "All I'm seeing is \"Loading Focal...\" blinking forever.",
+          "url": "https://news.ycombinator.com/item?id=40826252",
+          "source": "hacker-news",
+          "rating": null
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "label": "Price and paywalls",
+      "kind": "complaint",
+      "score": 0.3,
+      "count": 1,
+      "share_pct": 5.6,
+      "avg_rating": null,
+      "sources": [
+        "hacker-news"
+      ],
+      "thin": true,
+      "quotes": [
+        {
+          "quote": "It has a great free plan, I wonder how much money the founder makes from a B2C product.",
+          "url": "https://news.ycombinator.com/item?id=34482019",
+          "source": "hacker-news",
+          "rating": null
+        }
+      ]
+    },
+    {
+      "id": "rigid",
+      "label": "Rigid intervals, no add or subtract",
+      "kind": "complaint",
+      "score": 0.3,
+      "count": 1,
+      "share_pct": 5.6,
+      "avg_rating": null,
+      "sources": [
+        "hacker-news"
+      ],
+      "thin": true,
+      "quotes": [
+        {
+          "quote": "...ave with regular pomodoro timers, such as that the work and break times are rigid between tasks and you can't add or subtract time; that you can't export the times as a PDF or CSV to send to clients if you're freelancing...",
+          "url": "https://news.ycombinator.com/item?id=34482019",
+          "source": "hacker-news",
+          "rating": null
+        }
+      ]
+    },
+    {
+      "id": "splitstore",
+      "label": "Local tasks and an account that do not match",
+      "kind": "complaint",
+      "score": 0.3,
+      "count": 1,
+      "share_pct": 5.6,
+      "avg_rating": null,
+      "sources": [
+        "product-hunt"
+      ],
+      "thin": true,
+      "quotes": [
+        {
+          "quote": "Now all my tasks were gone and no data.",
+          "url": "https://www.producthunt.com/products/pomofocus",
+          "source": "product-hunt",
+          "rating": null
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "quote": "...es I have with regular pomodoro timers, such as that the work and break times are rigid between tasks and you can't add or subtract time; that you can't export the times as a PDF or CSV to send to clients if you're freel...",
+      "url": "https://news.ycombinator.com/item?id=34482019",
+      "source": "hacker-news",
+      "rating": null
+    },
+    {
+      "quote": "This is also the reason I don't like taking walks in the middle of the workday, unless I'm working on a problem that needs more thought than action.",
+      "url": "https://news.ycombinator.com/item?id=34478331",
+      "source": "hacker-news",
+      "rating": null
+    },
+    {
+      "quote": "It would be nice to start and stop from the browser instead of keeping the website running on a separate tab.",
+      "url": "https://www.producthunt.com/products/pomofocus",
+      "source": "product-hunt",
+      "rating": null
+    }
+  ],
+  "unthemed_negative": [],
+  "dropped": 0,
+  "duplicates": 0
+}

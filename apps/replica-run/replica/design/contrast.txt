@@ -1,0 +1,21 @@
+  AAA   15.81:1  text                     on bg                   
+  AAA   14.49:1  text                     on surface              
+  AA     6.62:1  text-muted               on bg                   
+  AA     6.07:1  text-muted               on surface              
+  AAA   10.06:1  on-accent                on accent               
+  AAA   10.06:1  accent                   on bg                   large
+  AA     6.84:1  danger                   on bg                   
+  AA     5.80:1  success                  on bg                   
+  PASS   5.11:1  border-input             on bg                   ui
+  AAA   10.06:1  focus-ink                on focus-bg             
+  AAA    8.06:1  focus-ink                on focus-card           
+  AA     6.60:1  focus-muted              on focus-card           
+  AAA    8.24:1  focus-muted              on focus-bg             
+  AAA    8.19:1  short-ink                on short-bg             
+  AA     6.53:1  short-ink                on short-card           
+  AA     5.68:1  short-muted              on short-card           
+  AAA   11.69:1  long-ink                 on long-bg              
+  AAA    9.67:1  long-ink                 on long-card            
+  AAA    7.75:1  long-muted               on long-card            
+
+  19 pairs, 0 failing AA

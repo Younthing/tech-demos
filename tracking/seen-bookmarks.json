@@ -23,12 +23,6 @@
       "title": "ai-design-skills / landing-page-design (open-source AI designer skill for Claude/Cursor)",
       "url": "https://x.com/elayadesigns/status/2114049200749175174",
       "date": "2026-10-29"
-    },
-    {
-      "id": "2113026258816884763",
-      "title": "replica-skill (11 Claude skills to recon, rebuild, test and diff-score an app clone)",
-      "url": "https://x.com/wlzh/status/2113026258816884763",
-      "date": "2026-10-30"
     }
   ],
   "approved": [
@@ -37,6 +31,12 @@
       "title": "Anatomy (interactive isometric machine wireframes)",
       "url": "https://x.com/wheresryan22/status/2108948624004526516",
       "date": "2026-10-22"
+    },
+    {
+      "id": "2113026258816884763",
+      "title": "replica-skill (11 Claude skills to recon, rebuild, test and diff-score an app clone)",
+      "url": "https://x.com/wlzh/status/2113026258816884763",
+      "date": "2026-10-30"
     }
   ],
   "skipped": []

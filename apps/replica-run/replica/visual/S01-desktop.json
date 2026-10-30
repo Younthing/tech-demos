@@ -1,0 +1,57 @@
+{
+  "mode": "layout",
+  "original": {
+    "width": 1440,
+    "height": 900
+  },
+  "clone": {
+    "width": 1440,
+    "height": 900
+  },
+  "compared_at": {
+    "width": 480,
+    "height": 300
+  },
+  "height_delta_pct": 0.0,
+  "score": 45.2,
+  "verdict": "different",
+  "regions": [
+    {
+      "x": 480,
+      "y": 120,
+      "w": 480,
+      "h": 480,
+      "cells": 7,
+      "where": "middle centre"
+    },
+    {
+      "x": 840,
+      "y": 120,
+      "w": 120,
+      "h": 240,
+      "cells": 2,
+      "where": "top centre"
+    },
+    {
+      "x": 360,
+      "y": 0,
+      "w": 120,
+      "h": 120,
+      "cells": 1,
+      "where": "top left"
+    },
+    {
+      "x": 960,
+      "y": 0,
+      "w": 120,
+      "h": 120,
+      "cells": 1,
+      "where": "top right"
+    }
+  ],
+  "files": {
+    "original": "replica/screens/S01-desktop.png",
+    "clone": "replica/clone-screens/S01-desktop.png"
+  },
+  "diff_image": "replica/diffs/S01-desktop.png"
+}
