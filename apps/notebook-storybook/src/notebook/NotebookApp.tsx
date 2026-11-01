@@ -1,7 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { busyCursor, reduceExecution } from "./applyMessage";
 import { CodeCellView } from "./CodeCellView";
 import { MarkdownCellView } from "./MarkdownCellView";
@@ -12,10 +9,26 @@ import {
   updateCodeCell,
   type CodeCell,
   type ExecutionState,
+  type NotebookCell,
   type NotebookDocument,
 } from "./model";
-import { ExecutionMark } from "./ExecutionMark";
 import { createSampleNotebook } from "./sampleNotebook";
+import "./notebook.css";
+
+function blankCell(cellType: "code" | "markdown"): NotebookCell {
+  const id = crypto.randomUUID();
+  if (cellType === "markdown") {
+    return { id, cell_type: "markdown", source: "", metadata: {} };
+  }
+  return {
+    id,
+    cell_type: "code",
+    source: "",
+    outputs: [],
+    execution_count: null,
+    metadata: {},
+  };
+}
 
 export function NotebookApp({
   initialDocument,
@@ -31,7 +44,9 @@ export function NotebookApp({
   );
   const [executionStates, setExecutionStates] = useState<Record<string, ExecutionState>>({});
   const [runningCellId, setRunningCellId] = useState<string | null>(null);
-  const [generation, setGeneration] = useState(0);
+  const [selectedId, setSelectedId] = useState<string | null>(
+    () => (initialDocument ?? createSampleNotebook()).cells[0]?.id ?? null,
+  );
   const sessionRef = useRef<KernelSession>(session ?? createMockKernelSession({ delayMs }));
   const runningRef = useRef<string | null>(null);
   const documentRef = useRef(document);
@@ -41,15 +56,31 @@ export function NotebookApp({
     documentRef.current = document;
   }, [document]);
 
-  function reset() {
+  function restart() {
     generationRef.current += 1;
     runningRef.current = null;
     sessionRef.current.interrupt?.();
     sessionRef.current = session ?? createMockKernelSession({ delayMs });
-    setGeneration((value) => value + 1);
-    setDocument(initialDocument ?? createSampleNotebook());
-    setExecutionStates({});
     setRunningCellId(null);
+    setExecutionStates({});
+    setDocument((current) => ({
+      ...current,
+      cells: current.cells.map((cell) =>
+        cell.cell_type === "code" ? { ...cell, outputs: [], execution_count: null } : cell,
+      ),
+    }));
+  }
+
+  function insertCell(cellType: "code" | "markdown") {
+    const cell = blankCell(cellType);
+    setDocument((current) => {
+      const index = current.cells.findIndex((item) => item.id === selectedId);
+      const at = index === -1 ? current.cells.length : index + 1;
+      const cells = [...current.cells];
+      cells.splice(at, 0, cell);
+      return { ...current, cells };
+    });
+    setSelectedId(cell.id);
   }
 
   function changeSource(cellId: string, source: string) {
@@ -63,6 +94,7 @@ export function NotebookApp({
     const code = cell.source;
     const startedAt = generationRef.current;
     runningRef.current = cellId;
+    setSelectedId(cellId);
     setRunningCellId(cellId);
     setExecutionStates((states) => ({ ...states, [cellId]: "busy" }));
     setDocument((current) =>
@@ -118,59 +150,65 @@ export function NotebookApp({
     }
   }
 
-  const kernelState: ExecutionState = runningCellId ? "busy" : "idle";
+  async function runAll() {
+    const ids = documentRef.current.cells.filter(isCodeCell).map((cell) => cell.id);
+    const startedAt = generationRef.current;
+    for (const id of ids) {
+      if (generationRef.current !== startedAt) return;
+      await runCell(id);
+    }
+  }
+
+  const busy = runningCellId !== null;
+  const kernelName = session?.kind === "jupyter-server" ? "Jupyter Server" : "Python (mock)";
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <main className="mx-auto flex w-full max-w-3xl flex-col px-5 py-10 sm:px-8">
-        <header>
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p className="text-[0.625rem] font-semibold tracking-widest text-muted-foreground uppercase">
-                Storybook kernel
-              </p>
-              <h1 className="mt-2 font-heading text-3xl text-balance sm:text-4xl">Notebook</h1>
-            </div>
-            <Button type="button" variant="outline" className="min-h-11" onClick={reset}>
-              Reset
-            </Button>
-          </div>
-          <p className="mt-4 max-w-xl text-sm text-pretty text-muted-foreground">
-            Run a code cell to send an execute_request. The mock kernel replies on the
-            shell and iopub channels. Ctrl+Enter or Cmd+Enter runs the focused code cell.
-          </p>
-          <div className="mt-4 flex flex-wrap items-center gap-4">
-            <p>
-              <span className="sr-only">Kernel status</span>
-              <ExecutionMark state={kernelState} />
-            </p>
-            <Badge variant="secondary">{session?.label ?? "Mock kernel"}</Badge>
-          </div>
-        </header>
-        <Separator className="my-8" />
-        <ol className="flex list-none flex-col gap-8 p-0">
-          {document.cells.map((cell, index) => (
-            <li key={`${cell.id}-${generation}`}>
-              {cell.cell_type === "markdown" ? (
-                <MarkdownCellView
-                  cell={cell}
-                  index={index}
-                  onSourceChange={(source) => changeSource(cell.id, source)}
-                />
-              ) : (
-                <CodeCellView
-                  cell={cell}
-                  index={index}
-                  executionState={executionStates[cell.id] ?? "idle"}
-                  runDisabled={runningCellId !== null}
-                  onSourceChange={(source) => changeSource(cell.id, source)}
-                  onRun={() => void runCell(cell.id)}
-                />
-              )}
-            </li>
-          ))}
-        </ol>
-      </main>
+    <div className="notebook">
+      <div className="notebook-toolbar" role="toolbar" aria-label="Notebook">
+        <button type="button" onClick={() => insertCell("code")} disabled={busy}>
+          + Code
+        </button>
+        <button type="button" onClick={() => insertCell("markdown")} disabled={busy}>
+          + Markdown
+        </button>
+        <button type="button" onClick={() => void runAll()} disabled={busy}>
+          Run All
+        </button>
+        <button type="button" onClick={restart} disabled={busy}>
+          Restart
+        </button>
+        <span className="kernel">
+          <span className={busy ? "kernel-dot busy" : "kernel-dot"} aria-hidden="true" />
+          {kernelName}
+          <span className="sr-only">{busy ? "Executing" : "Idle"}</span>
+        </span>
+      </div>
+      <ol className="notebook-cells">
+        {document.cells.map((cell, index) => (
+          <li key={cell.id}>
+            {cell.cell_type === "markdown" ? (
+              <MarkdownCellView
+                cell={cell}
+                index={index}
+                selected={selectedId === cell.id}
+                onSelect={() => setSelectedId(cell.id)}
+                onSourceChange={(source) => changeSource(cell.id, source)}
+              />
+            ) : (
+              <CodeCellView
+                cell={cell}
+                index={index}
+                executionState={executionStates[cell.id] ?? "idle"}
+                selected={selectedId === cell.id}
+                runDisabled={busy}
+                onSelect={() => setSelectedId(cell.id)}
+                onSourceChange={(source) => changeSource(cell.id, source)}
+                onRun={() => void runCell(cell.id)}
+              />
+            )}
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }

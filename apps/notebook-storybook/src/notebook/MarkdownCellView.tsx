@@ -1,83 +1,82 @@
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import type { MarkdownCell } from "./model";
 
 export function MarkdownCellView({
   cell,
   index,
+  selected,
+  onSelect,
   onSourceChange,
 }: {
   cell: MarkdownCell;
   index: number;
+  selected: boolean;
+  onSelect: () => void;
   onSourceChange: (source: string) => void;
 }) {
-  const [mode, setMode] = useState<"preview" | "edit">("preview");
+  const [editing, setEditing] = useState(cell.source.length === 0);
   const fieldId = useId();
   const labelId = `${cell.id}-label`;
+  const areaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (editing) areaRef.current?.focus();
+  }, [editing]);
 
   return (
-    <article aria-labelledby={labelId} className="border border-border bg-card px-4 py-4">
+    <article
+      aria-labelledby={labelId}
+      className={selected ? "cell selected" : "cell"}
+      tabIndex={editing ? -1 : 0}
+      onMouseDown={onSelect}
+      onFocus={onSelect}
+      onDoubleClick={() => setEditing(true)}
+      onKeyDown={(event) => {
+        if (!editing && event.key === "Enter") {
+          event.preventDefault();
+          setEditing(true);
+        }
+      }}
+    >
       <h2 id={labelId} className="sr-only">
         Markdown cell {index + 1}
       </h2>
-      <div role="group" aria-label={`Markdown cell ${index + 1} mode`} className="mb-4 flex gap-2">
-        <Button
-          type="button"
-          size="sm"
-          className="min-h-11"
-          variant={mode === "preview" ? "default" : "outline"}
-          aria-pressed={mode === "preview"}
-          onClick={() => setMode("preview")}
-        >
-          Preview
-        </Button>
-        <Button
-          type="button"
-          size="sm"
-          className="min-h-11"
-          variant={mode === "edit" ? "default" : "outline"}
-          aria-pressed={mode === "edit"}
-          onClick={() => setMode("edit")}
-        >
-          Edit
-        </Button>
-      </div>
-      {mode === "edit" ? (
-        <>
-          <label
-            htmlFor={fieldId}
-            className="mb-2 block text-[0.625rem] font-semibold tracking-widest text-muted-foreground uppercase"
-          >
-            Markdown source
-          </label>
-          <Textarea
+      <div className="cell-input">
+        <div className="gutter" />
+        {editing ? (
+          <textarea
+            ref={areaRef}
             id={fieldId}
+            className="markdown-editor"
+            aria-label={`Markdown source for cell ${index + 1}`}
             value={cell.source}
             spellCheck
             onChange={(event) => onSourceChange(event.target.value)}
+            onBlur={() => {
+              if (cell.source.length > 0) setEditing(false);
+            }}
             onKeyDown={(event) => {
-              if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
+              if (event.key === "Escape" || ((event.metaKey || event.ctrlKey) && event.key === "Enter")) {
                 event.preventDefault();
-                setMode("preview");
+                if (cell.source.length > 0) setEditing(false);
               }
             }}
           />
-        </>
-      ) : (
-        <div className="notebook-markdown text-sm leading-relaxed">
-          <ReactMarkdown
-            components={{
-              h1: ({ children }) => <h2>{children}</h2>,
-              h2: ({ children }) => <h2>{children}</h2>,
-              h3: ({ children }) => <h3>{children}</h3>,
-            }}
-          >
-            {cell.source}
-          </ReactMarkdown>
-        </div>
-      )}
+        ) : (
+          <div className="notebook-markdown">
+            <ReactMarkdown
+              components={{
+                h1: ({ children }) => <h2>{children}</h2>,
+                h2: ({ children }) => <h2>{children}</h2>,
+                h3: ({ children }) => <h3>{children}</h3>,
+              }}
+            >
+              {cell.source}
+            </ReactMarkdown>
+          </div>
+        )}
+      </div>
     </article>
   );
 }

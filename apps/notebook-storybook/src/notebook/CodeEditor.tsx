@@ -12,20 +12,20 @@ import { useEffect, useRef } from "react";
 const notebookTheme = EditorView.theme({
   "&": {
     backgroundColor: "transparent",
-    color: "var(--foreground)",
-    fontSize: "13.5px",
+    color: "#1e1e1e",
+    fontSize: "13px",
   },
   ".cm-scroller": {
-    fontFamily: "var(--font-mono), ui-monospace, monospace",
-    lineHeight: "1.55",
+    fontFamily: "Menlo, Consolas, 'DejaVu Sans Mono', monospace",
+    lineHeight: "1.45",
   },
   ".cm-content": {
-    padding: "12px 0",
-    minHeight: "4.5rem",
-    caretColor: "var(--foreground)",
+    padding: "1px 0 4px",
+    minHeight: "1.45em",
+    caretColor: "#1e1e1e",
   },
   ".cm-line": {
-    padding: "0 14px",
+    padding: "0 2px",
   },
   ".cm-gutters": {
     display: "none",
@@ -34,7 +34,7 @@ const notebookTheme = EditorView.theme({
     outline: "none",
   },
   ".cm-cursor, .cm-dropCursor": {
-    borderLeftColor: "var(--foreground)",
+    borderLeftColor: "#1e1e1e",
   },
 });
 

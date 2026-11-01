@@ -5,7 +5,11 @@ print("hello from", name)`;
 
 export const SAMPLE_RESULT_SOURCE = "2 + 40";
 
-export const SAMPLE_HTML_SOURCE = `display_html('<table><thead><tr><th>Channel</th><th>Message</th></tr></thead><tbody><tr><td>shell</td><td>execute_reply</td></tr><tr><td>iopub</td><td>stream</td></tr></tbody></table>')`;
+export const SAMPLE_HTML_SOURCE = `display_html(
+  '<table><tr><th>Channel</th><th>Message</th></tr>'
+  + '<tr><td>shell</td><td>execute_reply</td></tr>'
+  + '<tr><td>iopub</td><td>stream</td></tr></table>'
+)`;
 
 export const SAMPLE_ERROR_SOURCE = "print(undefined_name)";
 
@@ -26,13 +30,11 @@ export function createSampleNotebook(): NotebookDocument {
         id: "intro",
         cell_type: "markdown",
         metadata: {},
-        source: `## A cell, then a kernel message
+        source: `## Kernel messages
 
-This notebook is a self-built cell surface. The document matches the cells vscode-jupyter executes. Run sends an \`execute_request\`. The mock kernel answers with Jupyter messages: \`status\`, \`stream\`, \`execute_result\` or \`error\`, then \`execute_reply\`.
+Run a code cell to send an \`execute_request\`. The mock kernel replies with \`stream\`, \`execute_result\`, or \`error\`, then \`execute_reply\`.
 
-- Edit any cell.
-- Run one code cell. Assignments stay in the mock kernel for the next cell.
-- Press Ctrl+Enter or Cmd+Enter in a code cell to run it.`,
+Double-click to edit this cell. Ctrl+Enter runs the focused code cell.`,
       },
       {
         id: "hello",

@@ -13,7 +13,7 @@ bun install
 bun run storybook
 ```
 
-Storybook serves at <http://127.0.0.1:6006>. Open **Notebook / Document**. Edit a cell, then press **Run** or Ctrl+Enter / Cmd+Enter.
+Storybook serves at <http://127.0.0.1:6006>. Open **Notebook / Document**. Use the gutter play control or Ctrl+Enter / Cmd+Enter to run a code cell. Double-click a markdown cell to edit it.
 
 The same notebook is the app:
 
@@ -36,7 +36,8 @@ Jupyter does not need to be installed. The story uses an in-memory kernel.
 [microsoft/vscode-jupyter](https://github.com/microsoft/vscode-jupyter) (MIT) is the reference for the cell and the way a notebook talks to a kernel. Nothing here imports that repository.
 
 - **Document.** A cell has `id`, `cell_type` (`code` or `markdown`), `source`, `outputs`, `execution_count`, and `metadata`, the same fields nbformat and vscode-jupyter execute. `source` is one string in memory. `toNbformat` writes the nbformat line array.
-- **Execution state.** vscode-jupyter drives VS Code's `NotebookCellExecutionState`: Idle, Pending, Executing. This UI shows `idle` and `busy`. `success` and `error` come from `execute_reply.status`, which the extension surfaces as `executionSummary.success`. Pending queues are out of scope: one kernel, and Run is disabled while a cell is busy.
+- **Execution state.** vscode-jupyter drives VS Code's `NotebookCellExecutionState`: Idle, Pending, Executing. This UI shows that as `In [ ]:` / `In [*]:` / `In [n]:`. `success` and `error` come from `execute_reply.status`, which the extension surfaces as `executionSummary.success`. Errors are a red traceback, not a status chip. Pending queues are out of scope: one kernel, and the gutter run controls are disabled while a cell is busy.
+- **Chrome.** The layout follows the VS Code notebook editor and classic Jupyter: flat cells on a white canvas, a circular run control in the gutter, `Out[n]:` beside execute results, and a blue bar on the focused cell.
 - **Who runs a cell.** The extension's kernel notes describe `NotebookKernelExecution` queueing the cell, `CellExecution` sending `execute_request`, and `CellExecutionMessageHandler` folding iopub messages into outputs. See [kernel.instructions.md](https://github.com/microsoft/vscode-jupyter/blob/main/.github/instructions/kernel.instructions.md).
 - **When a run is finished.** `CellExecutionMessageHandler` marks the request complete only after the shell reply **and** an iopub `status` of `idle` whose parent is that request (`gotIdleIOPubStatus && gotShellReply`). `reduceExecution` uses that same rule. Stream chunks with the same name append into one output.
 - **Two transports.** vscode-jupyter talks to Jupyter Server over HTTP/WebSocket, or to a kernel process over ZeroMQ. This demo implements the WebSocket message shape only. A browser cannot open ZeroMQ.

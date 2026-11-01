@@ -46,7 +46,8 @@ Out:
 References, not dependencies:
 
 - [vscode-jupyter kernel architecture](https://github.com/microsoft/vscode-jupyter/blob/main/.github/instructions/kernel.instructions.md): `NotebookKernelExecution` queues a cell, `CellExecution` sends `execute_request` on the session, `CellExecutionMessageHandler` folds iopub messages into outputs and finishes on `execute_reply`. Sessions are either Jupyter Server (HTTP/WebSocket) or raw ZeroMQ. This demo implements the WebSocket shape only.
-- VS Code execution states used by vscode-jupyter tests: `Idle`, `Pending`, `Executing`. The UI here shows `idle` and `busy` (executing). `success` and `error` come from `execute_reply.status`, which vscode-jupyter surfaces as `executionSummary.success`. Pending queues are out of scope: one kernel, run buttons disabled while a cell is busy.
+- VS Code execution states used by vscode-jupyter tests: `Idle`, `Pending`, `Executing`. The UI here shows `idle` and `busy` (executing). `success` and `error` come from `execute_reply.status`, which vscode-jupyter surfaces as `executionSummary.success`. Pending queues are out of scope: one kernel, run controls disabled while a cell is busy.
+- Visual chrome follows the VS Code Jupyter notebook and classic Jupyter, not a card dashboard: flat cells, a gutter `In [n]:` / `Out[n]:`, a small circular run control, and a blue left focus bar. Errors are red traceback text.
 - [Jupyter messaging](https://jupyter-client.readthedocs.io/en/stable/messaging.html) protocol 5.3: shell `execute_request` / `execute_reply`; iopub `status` (`busy` | `idle`), `stream`, `display_data`, `execute_result`, `error`. A request is complete only after both the shell reply and the iopub `idle` whose parent is that request. vscode-jupyter uses the same rule (`gotIdleIOPubStatus && gotShellReply` in `cellExecutionMessageHandler.ts`).
 - [Jupyter Server WebSocket protocols](https://jupyter-server.readthedocs.io/en/latest/developers/websocket-protocols.html): one socket at `/api/kernels/<id>/channels` multiplexes shell, iopub, stdin, control, and heartbeat. Messages with no binary buffers are JSON text. Messages with buffers use the default big-endian offset frame (`serialize_binary_message` in `jupyter_server`). The v1 subprotocol is documented and not implemented.
 
@@ -69,12 +70,12 @@ src/notebook/CodeCellView.tsx
 src/notebook/MarkdownCellView.tsx
 src/notebook/CodeEditor.tsx        CodeMirror 6
 src/notebook/OutputView.tsx
-src/notebook/ExecutionMark.tsx
+src/notebook/notebook.css        VS Code Light+ / Jupyter classic chrome
 src/notebook/Notebook.stories.tsx
 src/main.tsx                       same shell for bun run dev
 ```
 
-shadcn components live in `src/components/ui` and are added only as the shell needs them (`button`, `badge`, `separator`, `textarea`).
+shadcn/ui (Sera) is the project preset. The notebook chrome itself is plain CSS in `notebook.css`, so the cells are not shadcn cards.
 
 ## Deferred
 

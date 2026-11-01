@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import type { KernelMessage } from "./messages";
 import { createMockKernelSession } from "./mockKernel";
+import { SAMPLE_HTML_SOURCE } from "./sampleNotebook";
 
 async function collect(code: string, session = createMockKernelSession()) {
   const messages: KernelMessage[] = [];
@@ -41,7 +42,7 @@ describe("mock kernel", () => {
     expect(content<{ execution_count: number }>(result, "execute_reply").execution_count).toBe(2);
   });
 
-  test("returns arithmetic and rich html", async () => {
+  test("returns arithmetic and rich html, including a call split across lines", async () => {
     const session = createMockKernelSession();
     const math = await collect("2 + 40", session);
     expect(content<{ data: Record<string, string> }>(math, "execute_result").data).toEqual({
@@ -50,6 +51,10 @@ describe("mock kernel", () => {
     const html = await collect(`display_html('<b>hi</b>')`, session);
     expect(content<{ data: Record<string, string> }>(html, "display_data").data["text/html"]).toBe(
       "<b>hi</b>",
+    );
+    const table = await collect(SAMPLE_HTML_SOURCE, session);
+    expect(content<{ data: Record<string, string> }>(table, "display_data").data["text/html"]).toContain(
+      "<th>Channel</th>",
     );
   });
 

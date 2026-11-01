@@ -1,71 +1,85 @@
-import { Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { CodeEditor } from "./CodeEditor";
-import { ExecutionMark } from "./ExecutionMark";
 import type { CodeCell, ExecutionState } from "./model";
 import { OutputView } from "./OutputView";
 
-function promptLabel(state: ExecutionState, executionCount: number | null): string {
-  if (state === "busy") return "[*]";
-  if (executionCount === null) return "[ ]";
-  return `[${executionCount}]`;
+function inPrompt(state: ExecutionState, executionCount: number | null): string {
+  if (state === "busy") return "In [*]:";
+  if (executionCount === null) return "In [ ]:";
+  return `In [${executionCount}]:`;
+}
+
+function RunIcon() {
+  return (
+    <svg viewBox="0 0 12 12" aria-hidden="true">
+      <path d="M3.2 1.6v8.8L10.2 6 3.2 1.6z" fill="currentColor" />
+    </svg>
+  );
 }
 
 export function CodeCellView({
   cell,
   index,
   executionState,
+  selected,
   runDisabled,
+  onSelect,
   onSourceChange,
   onRun,
 }: {
   cell: CodeCell;
   index: number;
   executionState: ExecutionState;
+  selected: boolean;
   runDisabled: boolean;
+  onSelect: () => void;
   onSourceChange: (source: string) => void;
   onRun: () => void;
 }) {
   const labelId = `${cell.id}-label`;
-  const prompt = promptLabel(executionState, cell.execution_count);
   const busy = executionState === "busy";
+  const status =
+    executionState === "busy" ? "Running" : executionState === "error" ? "Failed" : "";
 
   return (
     <article
       aria-labelledby={labelId}
       aria-busy={busy}
-      className="border border-border bg-card focus-within:ring-2 focus-within:ring-ring/30"
+      className={selected ? "cell selected" : "cell"}
       data-state={executionState}
+      onMouseDown={onSelect}
+      onFocus={onSelect}
     >
       <h2 id={labelId} className="sr-only">
-        Code cell {index + 1}, {executionState}
+        Code cell {index + 1}
       </h2>
-      <div className="flex items-center justify-between gap-3 border-b border-border px-3 py-2">
-        <div className="flex items-center gap-3">
-          <span className="font-mono text-xs text-muted-foreground tabular-nums">In {prompt}</span>
-          <ExecutionMark state={executionState} />
+      {status ? (
+        <span className="sr-only" role="status">
+          {status}
+        </span>
+      ) : null}
+      <div className="cell-input">
+        <div className="gutter">
+          <button
+            type="button"
+            className={busy ? "run-button busy" : "run-button"}
+            aria-label={`Run cell ${index + 1}`}
+            aria-disabled={runDisabled}
+            onClick={() => {
+              if (!runDisabled) onRun();
+            }}
+          >
+            <RunIcon />
+          </button>
+          <span className="prompt in">{inPrompt(executionState, cell.execution_count)}</span>
         </div>
-        <Button
-          type="button"
-          size="sm"
-          className="min-h-11 min-w-11 aria-disabled:opacity-50"
-          aria-disabled={runDisabled}
-          aria-label={`Run code cell ${index + 1}`}
-          onClick={() => {
-            if (!runDisabled) onRun();
-          }}
-        >
-          <Play aria-hidden="true" className="translate-x-px" />
-          Run
-        </Button>
+        <CodeEditor
+          source={cell.source}
+          labelId={labelId}
+          editable={!busy}
+          onChange={onSourceChange}
+          onRun={onRun}
+        />
       </div>
-      <CodeEditor
-        source={cell.source}
-        labelId={labelId}
-        editable={!busy}
-        onChange={onSourceChange}
-        onRun={onRun}
-      />
       <OutputView outputs={cell.outputs} label={`Output for code cell ${index + 1}`} />
     </article>
   );

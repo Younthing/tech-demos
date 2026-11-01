@@ -68,10 +68,11 @@ function fail(ename: string, message: string): never {
 function tokenize(source: string): Token[] {
   const tokens: Token[] = [];
   let index = 0;
+  let depth = 0;
   while (index < source.length) {
     const character = source[index] ?? "";
     if (character === "\n" || character === ";") {
-      tokens.push({ type: "newline" });
+      if (depth === 0) tokens.push({ type: "newline" });
       index += 1;
       continue;
     }
@@ -133,6 +134,9 @@ function tokenize(source: string): Token[] {
       continue;
     }
     if ("+-*/=(),".includes(character)) {
+      if (character === "(") depth += 1;
+      if (character === ")") depth -= 1;
+      if (depth < 0) fail("SyntaxError", "Unexpected \")\"");
       tokens.push({ type: "op", value: character });
       index += 1;
       continue;
