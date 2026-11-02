@@ -1,0 +1,343 @@
+.notebook {
+  min-height: 100vh;
+  background: #ffffff;
+  color: #1e1e1e;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.notebook-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 35px;
+  margin: 0 auto 4px;
+  max-width: 1000px;
+  padding: 0 8px 0 4px;
+  border-bottom: 1px solid #e5e5e5;
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.notebook-toolbar button {
+  height: 26px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #1e1e1e;
+  font: inherit;
+  cursor: pointer;
+}
+
+.notebook-toolbar button:hover:not(:disabled) {
+  background: #e8e8e8;
+}
+
+.notebook-toolbar button:focus-visible {
+  outline: 1px solid #007acc;
+  outline-offset: 1px;
+}
+
+.notebook-toolbar button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.notebook-toolbar .kernel {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #616161;
+  font-size: 12px;
+}
+
+.kernel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #8c8c8c;
+}
+
+.kernel-dot.busy {
+  background: #007acc;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .kernel-dot.busy {
+    animation: notebook-pulse 1s ease-in-out infinite;
+  }
+}
+
+.notebook-cells {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 8px 12px 48px;
+  list-style: none;
+}
+
+.cell {
+  position: relative;
+  margin: 0 0 2px;
+  padding: 4px 8px 2px 4px;
+  border-radius: 2px;
+  outline: 1px solid transparent;
+  background: transparent;
+}
+
+.cell:focus {
+  outline: 1px solid transparent;
+}
+
+.cell.selected {
+  outline-color: rgba(0, 122, 204, 0.4);
+  box-shadow: inset 3px 0 0 #007acc;
+}
+
+.cell:hover:not(.selected) {
+  outline-color: rgba(0, 0, 0, 0.08);
+}
+
+.cell-input,
+.output-row {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  column-gap: 4px;
+  align-items: start;
+}
+
+.gutter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  min-height: 22px;
+  padding-top: 1px;
+}
+
+.run-button {
+  width: 28px;
+  height: 28px;
+  margin: 0 4px 0 0;
+  padding: 0;
+  border: 1px solid #6e6e6e;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #333333;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex: 0 0 28px;
+}
+
+.cell:not(.selected):not(:hover) .run-button {
+  opacity: 0.7;
+}
+
+.run-button:hover:not([aria-disabled="true"]) {
+  background: #f3f3f3;
+}
+
+.run-button:focus-visible {
+  outline: 1px solid #007acc;
+  outline-offset: 2px;
+}
+
+.run-button[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.run-button.busy {
+  opacity: 1;
+}
+
+.run-button svg {
+  width: 11px;
+  height: 11px;
+  margin-left: 1px;
+  display: block;
+}
+
+.run-button.busy {
+  border-color: #d0d0d0;
+  border-top-color: #007acc;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .run-button.busy {
+    animation: notebook-spin 0.7s linear infinite;
+  }
+}
+
+.run-button.busy svg {
+  visibility: hidden;
+}
+
+.prompt {
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 12px;
+  line-height: 18px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.prompt.in {
+  color: #303f9f;
+}
+
+.prompt.out {
+  color: #d84315;
+  padding-top: 2px;
+}
+
+.output-stream,
+.output-plain,
+.output-error {
+  margin: 0;
+  padding: 1px 0 6px;
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 13px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  background: transparent;
+  color: #1e1e1e;
+}
+
+.output-error {
+  color: #a31515;
+}
+
+.notebook .notebook-html {
+  padding: 2px 0 8px;
+  color: #1e1e1e;
+  font-size: 13px;
+}
+
+.notebook .notebook-html table {
+  width: auto;
+  border-collapse: collapse;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+}
+
+.notebook .notebook-html :is(th, td) {
+  border: 1px solid #d4d4d4;
+  padding: 4px 10px;
+  text-align: left;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 13px;
+}
+
+.notebook .notebook-html th {
+  font-weight: 600;
+}
+
+.notebook .notebook-html td {
+  font-weight: 400;
+}
+
+.notebook .notebook-markdown {
+  padding: 2px 0 8px;
+  color: #1e1e1e;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.notebook .notebook-markdown :is(h2, h3) {
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  text-wrap: balance;
+  color: #1e1e1e;
+}
+
+.notebook .notebook-markdown h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.notebook .notebook-markdown h3 {
+  margin: 12px 0 6px;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.notebook .notebook-markdown :is(p, ul) {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.notebook .notebook-markdown :is(p, ul) + :is(p, ul, pre) {
+  margin-top: 8px;
+}
+
+.notebook .notebook-markdown ul {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.notebook .notebook-markdown code {
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 0.92em;
+  padding: 0 0.2em;
+  background: #f3f3f3;
+}
+
+.notebook .notebook-markdown pre {
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  overflow-x: auto;
+  background: #f3f3f3;
+}
+
+.notebook .notebook-markdown pre code {
+  padding: 0;
+  background: transparent;
+}
+
+.markdown-editor {
+  width: 100%;
+  min-height: 4.5rem;
+  margin: 0;
+  padding: 2px 0 6px;
+  border: 0;
+  resize: vertical;
+  background: transparent;
+  color: #1e1e1e;
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  outline: none;
+  field-sizing: content;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes notebook-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes notebook-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
